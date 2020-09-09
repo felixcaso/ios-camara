@@ -12,8 +12,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1f8def78-2f70-4520-a74a-752ba9dfb950" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sketch.js" beforeDir="false" afterPath="$PROJECT_DIR$/sketch.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +51,7 @@
       <option name="presentableId" value="Default" />
       <updated>1599616705027</updated>
       <workItem from="1599616706182" duration="9471000" />
+      <workItem from="1599674463263" duration="1494000" />
     </task>
     <servers />
   </component>
@@ -69,6 +68,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="135" y="96" key="RollbackChangesDialog" timestamp="1599628152621">
