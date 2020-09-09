@@ -1,30 +1,29 @@
-var cnv;
-
-function setup() {
-    cnv = createCanvas(windowWidth,windowHeight);
-    background(150);
-    cnv.mouseClicked(playCMajorScale);
-
+// Set constraints for the video stream
+var constraints = { video: { facingMode: "user" }, audio: false };
+// Define constants
+const cameraView = document.querySelector("#camera--view"),
+    cameraOutput = document.querySelector("#camera--output"),
+    cameraSensor = document.querySelector("#camera--sensor"),
+    cameraTrigger = document.querySelector("#camera--trigger")
+// Access the device camera and stream to cameraView
+function cameraStart() {
+    navigator.mediaDevices
+        .getUserMedia(constraints)
+        .then(function(stream) {
+            track = stream.getTracks()[0];
+            cameraView.srcObject = stream;
+        })
+        .catch(function(error) {
+            console.error("Oops. Something is broken.", error);
+        });
 }
-
-function draw (){
-
-}
-
-
-function playCMajorScale(){
-    var synth = new Tone.Synth().toMaster();
-    var myScale = ['C4','D4','E4','F4','G4','A4','B4','C5'];//D major = D E F# G A B C# (D) (no flat names used)
-    var patternMenu = document.getElementById("melodicPattern");
-    var patternName = patternMenu.options[patternMenu.selectedIndex].value;
-
-    var pattern = new Tone.Pattern(function(time, note){
-        //the order of the notes passed in depends on the pattern
-        synth.triggerAttackRelease(note, "4n", time);
-    }, myScale, patternName).start(0);
-
-    var tempo = document.myForm.tempo.value;
-    Tone.Transport.bpm.value = tempo
-    synth.volume.value = document.myForm.volume.value;
-    Tone.Transport.start("+0.1");
-}
+// Take a picture when cameraTrigger is tapped
+cameraTrigger.onclick = function() {
+    cameraSensor.width = cameraView.videoWidth;
+    cameraSensor.height = cameraView.videoHeight;
+    cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
+    cameraOutput.src = cameraSensor.toDataURL("image/webp");
+    cameraOutput.classList.add("taken");
+};
+// Start the video stream when the window loads
+window.addEventListener("load", cameraStart, false);
